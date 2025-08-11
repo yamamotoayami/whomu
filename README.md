@@ -30,6 +30,89 @@ Minimal dark-themed Q&amp;A SNS to share questions you ask AI. Built with Java +
 # http://localhost:8080
 ```
 
+## Project Structure
+whomu/
+├── docs/                         # スクショや設計資料
+│   ├── list.png
+│   ├── detail.png
+│   └── post.png
+├── src/
+│   ├── main/
+│   │   ├── java/com/example/whomu/
+│   │   │   ├── WhomuApplication.java             # メインクラス
+│   │   │   ├── controller/
+│   │   │   │   ├── QuestionController.java       # 投稿・一覧・詳細ページ
+│   │   │   ├── model/
+│   │   │   │   ├── Question.java                 # 質問モデル
+│   │   │   └── service/
+│   │   │       ├── QuestionService.java          # 質問の保存・取得ロジック
+│   │   └── resources/
+│   │       ├── templates/                        # Thymeleafテンプレート
+│   │       │   ├── index.html                    # 一覧画面
+│   │       │   ├── detail.html                   # 詳細画面
+│   │       │   └── post.html                     # 投稿フォーム
+│   │       ├── static/                           # 静的ファイル（CSS, JS, 画像など）
+│   │       │   ├── css/
+│   │       │   │   └── style.css
+│   │       │   └── js/
+│   │       │       └── script.js
+│   │       └── application.properties            # Spring Boot設定
+│   └── test/java/com/example/whomu/
+│       └── WhomuApplicationTests.java            # テスト
+├── uploads/                       # アップロードされた画像
+├── questions.json                  # 質問データ（ローカル保存用）
+├── README.md
+├── pom.xml                         # Maven設定
+└── .gitignore
+
+
+## Road Map
+### 📅 開発ロードマップ
+### Phase 1: 基本機能（MVP）
+ Spring Boot プロジェクト作成
+
+ GitHub リポジトリ作成・push設定（SSH化）
+
+ docs/ フォルダにスクショ保存
+
+ 質問投稿フォーム (post.html)
+
+ 質問一覧表示 (index.html)
+
+ 質問詳細表示 (detail.html)
+
+ ローカルJSONファイル(questions.json)への保存・読み込み
+
+### Phase 2: UI改善
+ CSSデザイン適用（レスポンシブ対応）
+
+ 質問投稿後のサクセスメッセージ表示
+
+ 日付・投稿者名の表示追加
+
+ READMEに画面スクショ埋め込み（サイズ調整済み）
+
+### Phase 3: 画像アップロード機能
+ 投稿時に画像添付できる機能
+
+ アップロード画像のリサイズ＆圧縮
+
+ uploads/ フォルダに保存＆画面表示
+
+### Phase 4: データベース連携
+ MySQLまたはPostgreSQLに移行
+
+ JPAを使った永続化
+
+ 環境別設定（dev/prod）
+
+### Phase 5: 公開準備
+ READMEに最終的なフォルダ構成・使用技術一覧を追加
+
+ Heroku / Render / Railwayなどでデプロイ
+
+ GitHub ActionsでCI/CD設定
+
 
 
 
