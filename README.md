@@ -10,7 +10,7 @@ Minimal dark-themed Q&amp;A SNS to share questions you ask AI. Built with Java +
 - 詳細（スクショ画像＋♡ふみゅ）
 <img src="docs/detail.png" alt="詳細画面" width="40%">
 - 投稿フォーム（PH:「チャッピーと何話したの？」）
-<img src="docs/posy.png" alt="投稿画面" width="40%">
+<img src="docs/post.png" alt="投稿画面" width="40%">
 
 ## Features (MVP)
 - 投稿（長文OK / 画像アップロード対応）
