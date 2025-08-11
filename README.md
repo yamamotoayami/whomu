@@ -31,7 +31,7 @@ Minimal dark-themed Q&amp;A SNS to share questions you ask AI. Built with Java +
 ```
 
 ## Project Structure
-whomu/
+```whomu/
 ├── docs/                         # スクショや設計資料
 │   ├── list.png
 │   ├── detail.png
@@ -64,7 +64,7 @@ whomu/
 ├── README.md
 ├── pom.xml                         # Maven設定
 └── .gitignore
-
+```
 
 ## Road Map
 ### 📅 開発ロードマップ
