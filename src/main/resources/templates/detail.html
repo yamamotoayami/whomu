@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>whomu | 詳細</title>
+    <style>
+        :root{--bg:#000;--text:#fff;--sub:#bbb;--violet:#B483F4;}
+        *{box-sizing:border-box}
+        body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial}
+        .wrap{max-width:680px;margin:0 auto;padding:16px}
+        .logo{color:var(--violet);font-weight:700;font-size:18px;letter-spacing:.5px;margin:8px 0 16px}
+        .card{border:1px solid #222;border-radius:14px;padding:14px 16px;background:#0a0a0a;margin:12px 0}
+        .meta{display:flex;gap:10px;align-items:center;color:var(--sub);font-size:12px;margin-bottom:8px}
+        .avatar{width:28px;height:28px;border-radius:50%;background:#1a1a1a}
+        .content{line-height:1.65;white-space:pre-wrap}
+        .more{color:var(--violet);font-size:13px;text-decoration:none}
+        .fumu{float:right;border:1px solid var(--violet);border-radius:20px;padding:6px 10px;color:var(--violet);background:transparent}
+        .input, textarea{width:100%;background:#0a0a0a;color:#fff;border:1px solid #222;border-radius:10px;padding:10px}
+        .screenshot{width:100%;border-radius:12px;background:#111;border:1px solid #222;min-height:180px;display:block}
+        .small{font-size:12px;color:var(--sub)}
+    </style>
+
+</head>
+<body><div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:4px 0 12px">
+        <div class="logo">whomu</div>
+        <a href="/submit" class="fumu">＋ ふみゅする</a>
+    </div>
+
+
+    <div class="card">
+        <div class="meta">
+            <div class="avatar"></div>
+            <div>
+                <span th:text="${q.author}">匿名</span>
+                · <span class="small" th:text="${#dates.format(q.createdAt, 'yyyy/MM/dd HH:mm')}">time</span>
+
+            </div>
+        </div>
+
+        <div class="content" th:text="${q.content}">content</div>
+
+        <img th:if="${q.imagePath != null}" th:src="${q.imagePath}" alt="screenshot" class="screenshot" style="margin-top:10px">
+
+        <form th:action="@{'/q/' + ${q.id} + '/fumu'}" method="post" style="display:flex;justify-content:flex-end;margin-top:12px">
+            <button class="fumu" type="submit">♡ ふみゅ <span th:text="${q.fumu}">0</span></button>
+        </form>
+    </div>
+
+
+
+    <a href="/" class="more">← 一覧へ</a>
+</div></body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>whomu</title>
+    <style>
+        :root{--bg:#000;--text:#fff;--sub:#bbb;--violet:#B483F4;}
+        *{box-sizing:border-box}
+        body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial}
+        .wrap{max-width:680px;margin:0 auto;padding:16px}
+        .logo{color:var(--violet);font-weight:700;font-size:18px;letter-spacing:.5px;margin:8px 0 16px}
+        .card{border:1px solid #222;border-radius:14px;padding:14px 16px;background:#0a0a0a;margin:12px 0}
+        .meta{display:flex;gap:10px;align-items:center;color:var(--sub);font-size:12px;margin-bottom:8px}
+        .avatar{width:28px;height:28px;border-radius:50%;background:#1a1a1a}
+        .content{line-height:1.65;white-space:pre-wrap}
+        .more{color:var(--violet);font-size:13px;text-decoration:none}
+        .fumu{float:right;border:1px solid var(--violet);border-radius:20px;padding:6px 10px;color:var(--violet);background:transparent}
+        .input, textarea{width:100%;background:#0a0a0a;color:#fff;border:1px solid #222;border-radius:10px;padding:10px}
+        .screenshot{width:100%;border-radius:12px;background:#111;border:1px solid #222;min-height:180px;display:block}
+        .small{font-size:12px;color:var(--sub)}
+    </style>
+
+</head>
+<body>
+<div class="wrap">
+
+    <!-- ヘッダー：投稿があるときだけ右上CTAを出す -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:4px 0 12px">
+        <div class="logo">whomu</div>
+        <a th:if="${!#lists.isEmpty(questions)}" href="/submit" class="fumu">＋ ふみゅする</a>
+    </div>
+
+    <!-- 空状態 -->
+    <div th:if="${#lists.isEmpty(questions)}" class="card" style="text-align:center">
+        <div class="content" style="color:#bbb">まだ投稿がありません。</div>
+        <div style="margin-top:12px">
+            <a href="/submit" class="fumu" style="margin:0 auto;display:inline-block">最初のふみゅを投稿する</a>
+        </div>
+    </div>
+
+    <!-- 通常リスト -->
+    <div th:if="${!#lists.isEmpty(questions)}">
+        <div th:each="q : ${questions}" class="card">
+            <div class="meta">
+                <div class="avatar"></div>
+                <div>
+                    <span th:text="${q.author}">匿名</span>
+                    · <span class="small" th:text="${#dates.format(q.createdAt,'yyyy/MM/dd HH:mm')}">time</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <span th:if="${#strings.length(q.content) <= 160}" th:text="${q.content}">content</span>
+                <span th:if="${#strings.length(q.content) > 160}"
+                      th:text="${q.content.substring(0,160) + '…'}">content</span>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+                <span class="small">♡ <span th:text="${q.fumu}">0</span></span>
+                <a th:href="@{'/q/' + ${q.id}}" class="more">もっと見る</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

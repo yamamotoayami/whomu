@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>whomu | ふみゅする</title>
+    <style>
+        :root{--bg:#000;--text:#fff;--sub:#bbb;--violet:#B483F4;}
+        *{box-sizing:border-box}
+        body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial}
+        .wrap{max-width:680px;margin:0 auto;padding:16px}
+        .logo{color:var(--violet);font-weight:700;font-size:18px;letter-spacing:.5px;margin:8px 0 16px}
+        .card{border:1px solid #222;border-radius:14px;padding:14px 16px;background:#0a0a0a;margin:12px 0}
+        .meta{display:flex;gap:10px;align-items:center;color:var(--sub);font-size:12px;margin-bottom:8px}
+        .avatar{width:28px;height:28px;border-radius:50%;background:#1a1a1a}
+        .content{line-height:1.65;white-space:pre-wrap}
+        .more{color:var(--violet);font-size:13px;text-decoration:none}
+        .fumu{float:right;border:1px solid var(--violet);border-radius:20px;padding:6px 10px;color:var(--violet);background:transparent}
+        .input, textarea{width:100%;background:#0a0a0a;color:#fff;border:1px solid #222;border-radius:10px;padding:10px}
+        .screenshot{width:100%;border-radius:12px;background:#111;border:1px solid #222;min-height:180px;display:block}
+        .small{font-size:12px;color:var(--sub)}
+    </style>
+
+</head>
+<body><div class="wrap">
+    <div class="logo">whomu</div>
+
+    <form method="post" th:object="${form}" action="/submit" class="card" enctype="multipart/form-data">
+
+        <label class="small">問い（長文OK）</label>
+        <textarea class="input" th:field="*{content}" rows="8"
+                  placeholder="チャッピーと何話したの？（そのまま書いてOK）" required></textarea>
+        <div class="small" style="color:#f88" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Err</div>
+
+        <input class="input" th:field="*{author}" placeholder="名前（任意・空なら匿名）" style="margin-top:10px">
+        <div class="small" style="color:#f88" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Err</div>
+
+        <input class="input" type="file" name="image" accept="image/*" style="margin-top:8px">
+        <div class="small" style="color:#f88" th:if="${#fields.hasErrors('imagePath')}" th:errors="*{imagePath}">Err</div>
+
+        <div style="display:flex;justify-content:flex-end;margin-top:12px">
+            <button type="submit" class="fumu">♡ ふみゅ</button>
+        </div>
+    </form>
+
+    <div class="small" th:if="${ok}" style="color:#9f9">[[${ok}]]</div>
+
+
+    <a href="/" class="more">← 戻る</a>
+</div></body></html>
