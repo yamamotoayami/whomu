@@ -12,8 +12,11 @@ Minimal dark-themed Q&amp;A SNS to share questions you ask AI. Built with Java +
 
 ## Features (MVP)
 - 投稿（長文OK / 画像アップロード対応）
+- ![List View](docs/list.png)
 - 一覧（新着順、長文は省略表示→もっと見る）
+- ![Detail View](docs/detail.png)
 - 詳細（スクショ表示、♡ふみゅリアクション）
+- ![Post Form](docs/post.png)
 - ダークテーマ：黒 × 白 × 紫
 
 ## Tech
@@ -28,15 +31,7 @@ Minimal dark-themed Q&amp;A SNS to share questions you ask AI. Built with Java +
 # http://localhost:8080
 ```
 
-## Screenshots
-### List View
-![List View](docs/list.png)
 
-### Detail View
-![Detail View](docs/detail.png)
-
-### Post Form
-![Post Form](docs/post.png)
 
 
 
